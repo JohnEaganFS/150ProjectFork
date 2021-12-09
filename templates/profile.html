@@ -1,0 +1,113 @@
+{% extends "base.html"%}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href = "../static/CSS/profile.css">
+    <link rel = "stylesheet" href = "../static/CSS/searchBar.css">
+    <style> /* Just using borders for testing (feel free to remove this style section) 
+        #profileInfo {
+            border-style: solid;
+            border-width: 1px;
+            display: flex;
+            flex-direction: row;
+        }
+        #ratingsPicContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            width: 50%;
+        }
+        #nameLocationBioContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        */
+    </style>
+{% endblock %}
+
+{% block content %}
+    <br>    
+    <form id="searchContainer" method="post">
+        <label for="search" id="searchLabel"> Find </label>
+        <input type="hidden" name = "search_form">
+        <input name="search" type="text" id="searchBar" placeholder="gardener, plumber, painter... ">
+        <script>
+            if (document.getElementById("searchBar").value == null) {
+
+
+            } else {
+                document.getElementById("searchBar").value = sessionStorage.getItem("searchItem");
+            }
+        </script>
+        <label for="locationBar" id="locationLabel"> Near </label>
+        <input name="locationBar" type="text" id="locationBar" placeholder="Fresno,CA">
+        <!-- <div id="filterContainer">filter paceholder</div> -->
+
+        <div id="searchButtonContainer"><input type="submit" name="searchButton" id="searchButton" onclick = "setSearchTerm()"> </div>
+    </form>
+    <br>
+    <section id = profileContent>
+        <div class="row">
+            <section id = "profileInfo">
+                <div class="column">
+                    <div id = "ratingsPicContainer">
+                        
+                        <div id ="profilePic">
+                            <img src = "{{url_for('static', filename='profilePic/' + profileResult['profile']['imgLink'])}}" style="width:230px;height:230px" id = "userImg">
+                        </div>
+                        <div id = "profileRatings">
+                            <br>
+                            <a href="{{url_for('reviews', usr=profileResult['profile']['displayName'])}}"><button class = "profileButtons" type = "button">Reviews</button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="column" style="padding-left: 20px;">
+                    <div id = "nameLocationBioContainer">
+                        <div id = "profileName">
+                            <p>Name: {{profileResult['profile']['displayName']}}</p>
+                        </div>
+                        <div id = "profileLocation">
+                            <p>Location: {{profileResult['profile']['location']}}</p>
+                        </div>
+                        <div id = "profileBio">
+                            <p>Labors: {{profileResult['profile']['labors']}}</p>
+                            <p>Bio: {{profileResult['profile']['userBio']}}</p>
+                        </div>
+                        <div id = "phone">
+                            <p>Phone Number: {{profileResult['phonenumber']}}</p>
+                        </div>
+                        
+                        {% if isUser is true %}
+                            <a href = "{{url_for('addproj')}}"><button class = "profileButtons" type = "button">Add Project</button></a>
+                            <br>
+                            <br>
+                            <a href = "{{url_for('profileEdit')}}"><button class = "profileButtons" type = "button">Edit</button></a>
+                        {% endif %}
+                        
+                    </div>
+                </div>
+            </section>
+        </div>
+        <section id = "userProjects">
+            <h2>Projects</h2>
+            
+            {% for project in profileResult['projects'] %}
+                <article class = "projectContainer">
+                    <h3>{{project['projName']}}</h3>
+                    <div class = "projectContent">
+                        <img src = "{{url_for('static', filename='projectPic/' + project['projImage1'])}}" alt = "photo1" class = "projectPhoto">
+                        <img src = "{{url_for('static', filename='projectPic/' + project['projImage2'])}}" alt = "photo2" class = "projectPhoto">
+                        <div id = "projectDescription">
+                            <p>{{project['projDescription']}}</p>
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </section>
+    </section>
+    
+    {% endblock %}

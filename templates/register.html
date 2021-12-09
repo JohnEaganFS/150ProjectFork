@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<link rel = "stylesheet" href = "/static/CSS/register.css">
+<!--<div align="right">
+    <p><a href="#">About</a> <br /> <a href="#">Login </a><br/> <a href="#">Account</a></p>
+</div>-->
+
+<div align="center">
+    <h4 id = "DesHeading">Sign up for Word of Mouth.</h4>
+    
+    <p id = "DesContent"> By signing up you will be able to find work locally and fast. This will give you the ability to show off your previous work and gain trust from local users.  
+    </p>
+    <form method = "post">
+        <input type="hidden" name = "form-name" value = "search_form">
+        <table>
+            <tbody>
+                <tr>
+                    <td> Username </td>
+                </tr>
+                <tr>
+                    <td> <input type = "text" name = "username" placeholder="Username" required></td>
+                </tr>
+                <tr>
+                    <td> Email </td>
+                </tr>
+                <tr>
+                    <td> <input type = "text" name = "email" placeholder="johndoe@email.com" required></td>
+                </tr>
+                <tr>
+                    <td> Password </td>
+                </tr>
+                <tr>
+                    <td> <input type = "text" name = "password" placeholder="Password" maxlength="30" required></td>
+                </tr>
+                <tr>
+                    <td> Phone Number </td>
+                </tr>
+                <tr>
+                    <td> <input type = "text" name = "phonenumber" placeholder="x-xxx-xxx-xxxx" pattern = "[0-9]{1}-[0-9]{3}-[0-9]{3}-[0-9]{4}" required></td>
+                </tr>
+                <tr>
+                    <td>Labor (Keywords)</td>
+                </tr>
+                <tr>
+                    <td> <input type = "text" name = "keywords" placeholder="Ex. painter, landscaper, renovator..."  required></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type = "submit" class = "create_profile" value = "Create Account">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+{% endblock %}
+

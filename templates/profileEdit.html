@@ -1,0 +1,82 @@
+{% extends "base.html"%}
+{% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel = "stylesheet" href = "../static/CSS/profileEdit.css">
+{% endblock %}
+
+{% block content %}
+<body>
+    
+    <p>
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+    </p>
+    
+    <Form method = "POST" enctype="multipart/form-data">
+        {% if filename %}
+        <div>
+            <img src ="">
+        </div>
+        {% endif %}
+
+        <dl>
+            <p>
+                <label for = "file">Profile Pic</label>
+                <br>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                <br>
+                <!--<label for = "project">Project Pic</label>
+                <br>
+                <input type="file" name="project" class="form-control" autocomplete="off" required>
+                <br>
+                <label for = "project2">Project Pic</label>
+                <br>
+                <input type="file" name="project2" class="form-control" autocomplete="off" required>-->
+            </p>
+        </dl>
+      
+
+
+
+    <section class = "EditPage" >
+        <br>
+            <label for="username">Username</label>
+            <input type = "text" name = "username" >
+            <br>
+            <label  for = "email"> Email</label>
+            <input type = "text" name = "email" >
+            <br>
+            <label  for = "phone"> Phone</label>
+            <input type = "text" name = "phone" >
+            <br>
+            <label  for = "labor" >Labor</label>
+            <input type = "text" name = "labor" >
+            <br>
+            <label  for = "location"> Location</label>
+            <input type = "text" name = "location" >
+            <br>
+            <label for = "description" >Description</label>
+            <input type = "text" name = "description" >
+            <br>
+
+    </section>
+
+            
+            
+            <input type = "submit" value = "submit">
+       
+        
+    </Form>
+</body>
+{% endblock %}

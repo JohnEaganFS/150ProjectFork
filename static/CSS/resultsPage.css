@@ -1,0 +1,46 @@
+hr{
+    width:90%;
+    margin-right:20%;
+}
+.result{
+
+display:inline-flex;
+margin-bottom:1%;
+height:23%;
+width:75%;
+}
+
+img.result_profileImage  {
+    height:100%;
+    padding-right:20px;
+    padding-top:20px;
+    
+    
+}
+.result_info{
+
+font-size: 15px;
+
+height:100%;
+
+}
+.midSec{
+
+    height:90%;
+}
+#resultsSection{
+    margin-left: 5%;
+    height:80%;
+}
+div.midContent, #results{
+    height: 100%;
+}
+html{
+    height:100%;
+}
+body{
+    height:99%; 
+}
+    input[type=submit]{
+    background-image: url('../static/Images/search.png');
+    }

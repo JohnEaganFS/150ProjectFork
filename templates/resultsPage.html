@@ -1,0 +1,69 @@
+{% extends "base.html"%}
+{% block head %}
+<link rel="stylesheet" href="../static/CSS/resultsPage.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale = 1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<script src="../static/JS/resultsPageJS.js"></script>
+<link rel = "stylesheet" href = "../static/CSS/searchBar.css">
+{% endblock %}
+
+{% block content %}
+<br><br>
+<section class="midSec">
+	<div class="midContent">
+		<form id="searchContainer" method="post">
+			<label for="search" id="searchLabel"> Find </label>
+			<input type="hidden" name = "form-name" value = "search_form">
+			{% if labor is defined %}
+				<input name="search" type="text" id="searchBar" value="{{labor}}">
+			{% endif %}
+			{% if labor is not defined %}
+				<input name="search" type="text" id="searchBar" placeholder="gardener, plumber, painter... ">
+			{% endif %}
+			<script>
+				// if (document.getElementById("searchBar").value == null) {
+
+
+				// } else {
+				// 	document.getElementById("searchBar").value = sessionStorage.getItem("searchItem");
+				// }
+			</script>
+			<label for="locationBar" id="locationLabel"> Near </label>
+			<input name="locationBar" type="text" id="locationBar" placeholder="Fresno,CA">
+			<!-- <div id="filterContainer">filter paceholder</div> -->
+
+			<div id="searchButtonContainer"><input type="submit" name="searchButton" id="searchButton" onclick = "setSearchTerm()"> </div>
+		</form>
+		<section id="resultsSection">
+			<h1>Results</h1>
+
+			<div id="results">
+				{%if rslts is defined and rslts != [{}] %}
+				{% for users in rslts %}
+					<p> {{userResult}}</p>
+					<article class="result">
+						<div class="result_imageContainer">
+							<img src="{{url_for('static', filename='profilePic/' + users['profile']['imgLink'])}}" style="width:100px;height:100px" class="result_profileImage">
+						</div>
+						<div class="result_info">
+							<a class="result_userName" href={{url_for('user', usr=users.name)}}>{{users.name}}</a>
+							<p class="result_labor">{{users.labor}}</p>
+							<p class="result_location">{{users.phonenumber}}</p>
+						</div>
+						<div class="result_stars">
+						</div>
+						
+					</article>
+					<hr>
+				{% endfor %}
+				{% else %}
+					<p>Nothing here</p>
+				{% endif %}
+			</div>
+
+		</section>
+	</div>
+	<div id="adContainerRight"></div>
+</section>
+{% endblock %}
